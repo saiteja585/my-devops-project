@@ -1,0 +1,12 @@
+---
+- hosts: local
+  become: true
+  tasks:
+  - name: create docker images
+    command: docker build -t mytomy:v1 .
+    args:
+     chdir: /opt/docker
+  - name: Tag docker image
+    command: docker tag mytomy:v1 saiteja585/mytomy:v1
+  - name: push the image to docker hub
+    command: docker push saiteja585/mytomy:v1

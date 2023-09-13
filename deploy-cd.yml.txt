@@ -1,0 +1,12 @@
+---
+- hosts: docker
+  become: true
+  tasks:
+  - name: stop the container
+    command: docker stop latesttom
+    ignore_errors: yes
+  - name: remove container
+    command: docker rm latesttom
+    ignore_errors: yes
+  - name: create container
+    command: docker run -d --name latesttom -p 8011:8080 saiteja585/mytomy:v1
